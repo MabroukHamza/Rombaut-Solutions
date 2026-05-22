@@ -26,21 +26,27 @@ function Contact() {
   const handleSubmit = async e => {
     e.preventDefault()
     setLoading(true)
+    setStatus(null)
+
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY',
-          ...formData,
-          to: 'info@rombautsolutions.be',
-        }),
+        body: JSON.stringify(formData),
       })
+
       const data = await res.json()
-      setStatus(data.success ? 'success' : 'error')
+
+      if (data.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     }
+
     setLoading(false)
   }
 
@@ -145,7 +151,7 @@ function Contact() {
               width: '100%',
               padding: '0.85rem',
               background: loading ? '#3a2e00' : '#d4a017',
-              color: '#000',
+              color: loading ? '#8a6d00' : '#000',
               fontSize: '0.75rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
@@ -156,21 +162,22 @@ function Contact() {
               transition: 'background 0.3s',
             }}
             onMouseEnter={e => { if (!loading) e.currentTarget.style.background = '#f5d060'; }}
-            onMouseLeave={e => { if (!loading) e.currentTarget.style.background = '#d4a017'; }}
+            onMouseLeave={e => { if (!loading) e.currentTarget.style.background = loading ? '#3a2e00' : '#d4a017'; }}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>
 
           {status === 'success' && (
             <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#d4a017', textAlign: 'center', letterSpacing: '0.1em' }}>
-              ✓ Message sent successfully. We'll be in touch soon.
+              ✓ Message sent. We will get back to you soon.
             </p>
           )}
           {status === 'error' && (
-            <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#8a0000', textAlign: 'center', letterSpacing: '0.1em' }}>
-              Something went wrong. Please try WhatsApp or call directly.
+            <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#c0392b', textAlign: 'center', letterSpacing: '0.1em' }}>
+              ✕ Something went wrong. Please try WhatsApp or call directly.
             </p>
           )}
+
         </form>
       </div>
 
