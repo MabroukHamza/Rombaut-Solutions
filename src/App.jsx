@@ -4,7 +4,7 @@ import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
 
 import DigitalSolution from './pages/DigitalSolution'
-import GSM from './pages/CustomGSM'
+import GSM from './pages/GSM'
 
 function App() {
   return (
