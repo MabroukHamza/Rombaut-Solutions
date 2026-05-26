@@ -4,7 +4,7 @@ import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
 
 import DigitalSolution from './pages/DigitalSolution'
-import CustomGSM from './pages/CustomGSM'
+import GSM from './pages/CustomGSM'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/laptop-repair" element={<LaptopRepair />} />
       <Route path="/setup-upgrades" element={<SetupUpgrades />} />
-      <Route path="/custom-gsm" element={<CustomGSM />} />
+      <Route path="/custom-gsm" element={<GSM />} />
       <Route path="/digital-solutions" element={<DigitalSolution />} />
     </Routes>
   )

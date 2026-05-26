@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-function CustomGSM() {
+function GSM() {
   const navigate = useNavigate()
 
   return (
@@ -93,4 +93,4 @@ function CustomGSM() {
   )
 }
 
-export default CustomGSM
+export default GSM
