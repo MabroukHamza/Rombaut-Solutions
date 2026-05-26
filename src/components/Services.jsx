@@ -1,35 +1,38 @@
+import { useNavigate } from 'react-router-dom'
+
 const services = [
   {
     icon: '💻',
     title: 'Laptop Repair',
     items: ['Hardware diagnostics', 'Screen & keyboard repair', 'Virus removal', 'Performance cleanup'],
+    route: '/laptop-repair',
   },
   {
     icon: '⚙️',
     title: 'Setup & Upgrades',
     items: ['New laptop setup', 'RAM & SSD upgrades', 'Software installation', 'Data migration'],
+    route: '/setup-upgrades',
   },
   {
     icon: '📱',
     title: 'Custom GSM Service',
     items: ['Tailored to your needs', 'Troubleshooting', 'Optimization', 'Privacy phones'],
+    route: '/custom-gsm',
   },
   {
     icon: '🌐',
     title: 'Digital Solutions',
     items: ['Website & landing pages', 'AI tools integration', 'Business systems', 'IT support'],
+    route: '/digital-solutions',
   },
 ]
 
 function Services() {
-  return (
-    <section id="services" style={{
-      padding: '6rem 1.5rem',
-      maxWidth: '1100px',
-      margin: '0 auto',
-    }}>
+  const navigate = useNavigate()
 
-      {/* Header */}
+  return (
+    <section id="services" style={{ padding: '6rem 1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
+
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
           — What We Do —
@@ -40,24 +43,27 @@ function Services() {
         <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto' }} />
       </div>
 
-      {/* Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-        gap: '1.5rem',
-      }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
         {services.map((service) => (
           <div
             key={service.title}
+            onClick={() => navigate(service.route)}
             style={{
               border: '1px solid #3a2e00',
               padding: '2rem 1.5rem',
               background: '#111111',
-              transition: 'border-color 0.3s',
-              cursor: 'default',
+              transition: 'border-color 0.3s, transform 0.2s',
+              cursor: 'pointer',
+              position: 'relative',
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = '#d4a017'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = '#3a2e00'; }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = '#d4a017'
+              e.currentTarget.style.transform = 'translateY(-4px)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = '#3a2e00'
+              e.currentTarget.style.transform = 'translateY(0)'
+            }}
           >
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{service.icon}</div>
             <h3 style={{
@@ -72,7 +78,7 @@ function Services() {
               {service.title}
             </h3>
             <div style={{ width: '2rem', height: '1px', background: '#7a5c00', marginBottom: '1rem' }} />
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: '1.5rem' }}>
               {service.items.map((item) => (
                 <li key={item} style={{
                   fontSize: '0.8rem',
@@ -85,11 +91,20 @@ function Services() {
                 </li>
               ))}
             </ul>
+            <span style={{
+              fontSize: '0.65rem',
+              letterSpacing: '0.2em',
+              color: '#d4a017',
+              textTransform: 'uppercase',
+              borderBottom: '1px solid #7a5c00',
+              paddingBottom: '2px',
+            }}>
+              Learn More →
+            </span>
           </div>
         ))}
       </div>
 
-      {/* Service area note */}
       <div style={{ textAlign: 'center', marginTop: '3rem' }}>
         <p style={{ fontSize: '0.75rem', color: '#8a6d00', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
           📍 Lokeren · Gent · Serskamp · Wetteren
