@@ -1,13 +1,9 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
-
-  const { name, email, phone, message } = req.body
+export async function onRequestPost(context) {
+  const resend = new Resend(context.env.RESEND_API_KEY)
+  const body = await context.request.json()
+  const { name, email, phone, message } = body
 
   try {
     await resend.emails.send({
@@ -29,8 +25,13 @@ export default async function handler(req, res) {
       `,
     })
 
-    res.status(200).json({ success: true })
+    return new Response(JSON.stringify({ success: true }), {
+      headers: { 'Content-Type': 'application/json' },
+    })
   } catch (error) {
-    res.status(500).json({ error: 'Failed to send email' })
+    return new Response(JSON.stringify({ success: false, error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 }

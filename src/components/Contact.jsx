@@ -29,7 +29,7 @@ function Contact() {
     setStatus(null)
 
     try {
-      const res = await fetch('/api/send', {
+      const res = await fetch('/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
