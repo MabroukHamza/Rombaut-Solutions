@@ -2,8 +2,9 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
-import CustomGSM from './pages/CustomGSM'
+
 import DigitalSolution from './pages/DigitalSolution'
+import CustomGSM from './pages/CustomGSM'
 
 function App() {
   return (
