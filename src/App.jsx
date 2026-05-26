@@ -1,14 +1,15 @@
-
-import './App.css'
+import Hero from './components/Hero'
+import Services from './components/Services'
+import Contact from './components/Contact'
 
 function App() {
   return (
-    <div>
-      <h1>Rombaut Solutions</h1>
-    </div>
+    <main>
+      <Hero />
+      <Services />
+      <Contact />
+    </main>
   )
 }
 
 export default App
-
-
