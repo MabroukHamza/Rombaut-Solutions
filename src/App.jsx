@@ -1,20 +1,23 @@
 import { Routes, Route } from 'react-router-dom'
+import ScrollToHash from './components/ScrollToHash'
 import Home from './pages/Home'
 import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
-
-import DigitalSolution from './pages/DigitalSolution'
-import GSM from './pages/GSM'
+import CustomGSM from './pages/CustomGSM'
+import DigitalSolutions from './pages/DigitalSolutions'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/laptop-repair" element={<LaptopRepair />} />
-      <Route path="/setup-upgrades" element={<SetupUpgrades />} />
-      <Route path="/custom-gsm" element={<GSM />} />
-      <Route path="/digital-solutions" element={<DigitalSolution />} />
-    </Routes>
+    <>
+      <ScrollToHash />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/laptop-repair" element={<LaptopRepair />} />
+        <Route path="/setup-upgrades" element={<SetupUpgrades />} />
+        <Route path="/custom-gsm" element={<CustomGSM />} />
+        <Route path="/digital-solutions" element={<DigitalSolutions />} />
+      </Routes>
+    </>
   )
 }
 

@@ -52,7 +52,7 @@ function Services() {
               border: '1px solid #3a2e00',
               padding: '2rem 1.5rem',
               background: '#111111',
-              transition: 'border-color 0.3s, transform 0.2s',
+              transition: 'border-color 0.3s, transform 0.3s',
               cursor: 'pointer',
               position: 'relative',
             }}
@@ -99,7 +99,7 @@ function Services() {
               borderBottom: '1px solid #7a5c00',
               paddingBottom: '2px',
             }}>
-              Learn More →
+              Learn More
             </span>
           </div>
         ))}

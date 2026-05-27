@@ -2,24 +2,24 @@ import { useNavigate } from 'react-router-dom'
 
 const details = [
   {
-    title: 'New Laptop Setup',
-    description: 'Got a new laptop? We set it up from scratch — OS configuration, essential software, security settings, and everything transferred from your old machine.',
+    title: 'Websites & Landing Pages',
+    description: 'Clean, fast, and professional websites built for results. From simple promo pages to full business sites — designed to convert visitors into customers.',
   },
   {
-    title: 'RAM & SSD Upgrades',
-    description: 'The most cost-effective way to breathe new life into an aging laptop. More RAM means better multitasking, an SSD means dramatically faster boot and load times.',
+    title: 'AI Tools Integration',
+    description: 'We implement AI tools into your business workflow to save time, reduce costs, and give you an edge. Automation, content, and smart systems tailored to your operation.',
   },
   {
-    title: 'Software Installation',
-    description: 'Clean installation of all the software you need — productivity tools, security suites, drivers, and custom configurations tailored to your workflow.',
+    title: 'Business Systems',
+    description: 'Digital infrastructure for your business — from email setup and domain management to internal tools and communication systems that actually work.',
   },
   {
-    title: 'Data Migration',
-    description: 'Switching devices? We transfer all your files, settings, and applications safely to your new machine without losing anything.',
+    title: 'IT Support',
+    description: 'Ongoing technical support for individuals and small businesses. Network issues, software problems, security — we are your go-to tech contact.',
   },
 ]
 
-function SetupUpgrades() {
+function DigitalSolutions() {
   const navigate = useNavigate()
 
   return (
@@ -36,14 +36,14 @@ function SetupUpgrades() {
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>⚙️</span>
+          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>🌐</span>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>— RO Digital —</p>
           <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            Setup & Upgrades
+            Digital Solutions
           </h1>
           <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto 1.5rem' }} />
           <p style={{ fontSize: '0.9rem', color: '#a08020', lineHeight: '1.8', maxWidth: '500px', margin: '0 auto' }}>
-            Whether you have a brand new device or want to maximize your existing hardware, we make sure your system runs exactly how it should.
+            Full digital service for individuals and businesses. We build, integrate, and support the systems that keep your operation running.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ function SetupUpgrades() {
         <div style={{ textAlign: 'center', border: '1px solid #b8860b', padding: '2.5rem', background: '#111111' }}>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '1rem' }}>— Get In Touch —</p>
           <p style={{ fontSize: '0.9rem', color: '#a08020', marginBottom: '1.5rem', lineHeight: '1.8' }}>
-            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Contact us for a free consultation.
+            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Let us know what you are building and we will make it happen.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="https://wa.me/32483318412" style={{ padding: '0.75rem 2rem', background: '#d4a017', color: '#000', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', fontWeight: '700' }}>
@@ -82,4 +82,4 @@ function SetupUpgrades() {
   )
 }
 
-export default SetupUpgrades
+export default DigitalSolutions

@@ -2,24 +2,24 @@ import { useNavigate } from 'react-router-dom'
 
 const details = [
   {
-    title: 'New Laptop Setup',
-    description: 'Got a new laptop? We set it up from scratch — OS configuration, essential software, security settings, and everything transferred from your old machine.',
+    title: 'Tailored GSM Service',
+    description: 'No cookie-cutter solutions. We assess your situation and build a service plan around your specific needs, usage, and goals.',
   },
   {
-    title: 'RAM & SSD Upgrades',
-    description: 'The most cost-effective way to breathe new life into an aging laptop. More RAM means better multitasking, an SSD means dramatically faster boot and load times.',
+    title: 'Troubleshooting',
+    description: 'Battery draining fast, apps crashing, connectivity issues, slow performance — we diagnose and fix the root cause, not just the symptoms.',
   },
   {
-    title: 'Software Installation',
-    description: 'Clean installation of all the software you need — productivity tools, security suites, drivers, and custom configurations tailored to your workflow.',
+    title: 'Optimization',
+    description: 'Your phone fine-tuned for maximum performance and battery life. We strip out the bloat, configure settings, and make it run the way it should.',
   },
   {
-    title: 'Data Migration',
-    description: 'Switching devices? We transfer all your files, settings, and applications safely to your new machine without losing anything.',
+    title: 'Privacy Phones',
+    description: 'For those who take their digital privacy seriously. We configure devices with privacy-first operating systems and tools to minimize data exposure.',
   },
 ]
 
-function SetupUpgrades() {
+function CustomGSM() {
   const navigate = useNavigate()
 
   return (
@@ -36,14 +36,14 @@ function SetupUpgrades() {
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>⚙️</span>
+          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>📱</span>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>— RO Digital —</p>
           <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            Setup & Upgrades
+            Custom GSM Service
           </h1>
           <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto 1.5rem' }} />
           <p style={{ fontSize: '0.9rem', color: '#a08020', lineHeight: '1.8', maxWidth: '500px', margin: '0 auto' }}>
-            Whether you have a brand new device or want to maximize your existing hardware, we make sure your system runs exactly how it should.
+            Mobile service built around you. From everyday troubleshooting to advanced privacy configurations — we handle it all.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ function SetupUpgrades() {
         <div style={{ textAlign: 'center', border: '1px solid #b8860b', padding: '2.5rem', background: '#111111' }}>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '1rem' }}>— Get In Touch —</p>
           <p style={{ fontSize: '0.9rem', color: '#a08020', marginBottom: '1.5rem', lineHeight: '1.8' }}>
-            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Contact us for a free consultation.
+            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Tell us what you need and we will take it from there.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="https://wa.me/32483318412" style={{ padding: '0.75rem 2rem', background: '#d4a017', color: '#000', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', fontWeight: '700' }}>
@@ -82,4 +82,4 @@ function SetupUpgrades() {
   )
 }
 
-export default SetupUpgrades
+export default CustomGSM

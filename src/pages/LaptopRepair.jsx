@@ -1,94 +1,83 @@
 import { useNavigate } from 'react-router-dom'
 
+const details = [
+  {
+    title: 'Hardware Diagnostics',
+    description: 'Full system scan to identify failing components, overheating issues, and hardware conflicts. We pinpoint the problem before touching anything.',
+  },
+  {
+    title: 'Screen & Keyboard Repair',
+    description: 'Cracked screen, dead pixels, unresponsive keyboard or broken keys — we replace and restore your laptop to full working condition.',
+  },
+  {
+    title: 'Virus & Malware Removal',
+    description: 'Deep clean of all malicious software, spyware, and bloatware. Your system gets secured and hardened against future threats.',
+  },
+  {
+    title: 'Performance Cleanup',
+    description: 'Slow laptop brought back to life. We clean startup programs, optimize system settings, and free up resources for a noticeably faster machine.',
+  },
+]
+
 function LaptopRepair() {
   const navigate = useNavigate()
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0a0a', color: '#d4a017' }}>
-      <section style={{ padding: '4rem 1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
+    <div style={{ minHeight: '100vh', background: '#0e0e0e', padding: '4rem 1.5rem' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+
         <button
           onClick={() => navigate('/')}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#d4a017',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            letterSpacing: '0.1em',
-            marginBottom: '2rem',
-            textTransform: 'uppercase',
-          }}
+          style={{ background: 'none', border: 'none', color: '#8a6d00', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', marginBottom: '3rem', padding: 0 }}
+          onMouseEnter={e => { e.currentTarget.style.color = '#d4a017' }}
+          onMouseLeave={e => { e.currentTarget.style.color = '#8a6d00' }}
         >
-          ← Back
+          ← Back to Home
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-            — Laptop Repair Service —
-          </p>
-          <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2.5rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            Professional Laptop Repair
+          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>💻</span>
+          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>— RO Digital —</p>
+          <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
+            Laptop Repair
           </h1>
-          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto' }} />
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginTop: '3rem' }}>
-          <div>
-            <h2 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1.5rem', color: '#d4a017', marginBottom: '1.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-              💻 What We Offer
-            </h2>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              {['Hardware diagnostics', 'Screen & keyboard repair', 'Virus removal', 'Performance cleanup', 'Battery replacement', 'Data recovery'].map((item) => (
-                <li key={item} style={{ fontSize: '1rem', color: '#a08020', marginBottom: '1rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0 }}>→</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1.5rem', color: '#d4a017', marginBottom: '1.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-              Why Choose Us
-            </h2>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              {['Expert technicians', 'Certified parts', 'Competitive pricing', 'Fast turnaround', 'Local support', 'Warranty included'].map((item) => (
-                <li key={item} style={{ fontSize: '1rem', color: '#a08020', marginBottom: '1rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0 }}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div style={{ background: '#111111', border: '1px solid #3a2e00', padding: '2rem', marginTop: '3rem', textAlign: 'center' }}>
-          <h3 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1.2rem', color: '#d4a017', marginBottom: '1rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Need Your Laptop Fixed?
-          </h3>
-          <p style={{ color: '#a08020', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-            Contact us today for a free consultation and quote
+          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto 1.5rem' }} />
+          <p style={{ fontSize: '0.9rem', color: '#a08020', lineHeight: '1.8', maxWidth: '500px', margin: '0 auto' }}>
+            Professional laptop repair service in the Lokeren area. Fast diagnostics, honest pricing, no unnecessary replacements.
           </p>
-          <button
-            style={{
-              background: '#d4a017',
-              color: '#0a0a0a',
-              border: 'none',
-              padding: '0.75rem 2rem',
-              fontSize: '0.85rem',
-              fontWeight: '700',
-              cursor: 'pointer',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.3s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
-            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-          >
-            Get In Touch
-          </button>
         </div>
-      </section>
+
+        <div style={{ display: 'grid', gap: '1.5rem', marginBottom: '4rem' }}>
+          {details.map((item) => (
+            <div key={item.title} style={{ border: '1px solid #3a2e00', padding: '2rem', background: '#111111', transition: 'border-color 0.3s' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#d4a017' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = '#3a2e00' }}
+            >
+              <h3 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                {item.title}
+              </h3>
+              <div style={{ width: '2rem', height: '1px', background: '#7a5c00', marginBottom: '0.75rem' }} />
+              <p style={{ fontSize: '0.85rem', color: '#a08020', lineHeight: '1.8', margin: 0 }}>{item.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: 'center', border: '1px solid #b8860b', padding: '2.5rem', background: '#111111' }}>
+          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '1rem' }}>— Get In Touch —</p>
+          <p style={{ fontSize: '0.9rem', color: '#a08020', marginBottom: '1.5rem', lineHeight: '1.8' }}>
+            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Contact us for a free diagnosis.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="https://wa.me/32483318412" style={{ padding: '0.75rem 2rem', background: '#d4a017', color: '#000', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', fontWeight: '700' }}>
+              WhatsApp Us
+            </a>
+            <button onClick={() => navigate('/#contact')} style={{ padding: '0.75rem 2rem', border: '1px solid #d4a017', background: 'none', color: '#d4a017', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>
+              Send Message
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   )
 }
