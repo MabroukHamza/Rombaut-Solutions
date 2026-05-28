@@ -1,84 +1,20 @@
-import { useNavigate } from 'react-router-dom'
+import ServicePage from './ServicePage'
 
 const details = [
-  {
-    title: 'Hardware Diagnostics',
-    description: 'Full system scan to identify failing components, overheating issues, and hardware conflicts. We pinpoint the problem before touching anything.',
-  },
-  {
-    title: 'Screen & Keyboard Repair',
-    description: 'Cracked screen, dead pixels, unresponsive keyboard or broken keys — we replace and restore your laptop to full working condition.',
-  },
-  {
-    title: 'Virus & Malware Removal',
-    description: 'Deep clean of all malicious software, spyware, and bloatware. Your system gets secured and hardened against future threats.',
-  },
-  {
-    title: 'Performance Cleanup',
-    description: 'Slow laptop brought back to life. We clean startup programs, optimize system settings, and free up resources for a noticeably faster machine.',
-  },
+  { title: 'Hardware Diagnostics', description: 'Full system scan to identify failing components, overheating issues, and hardware conflicts before any work is done.' },
+  { title: 'Screen & Keyboard Repair', description: 'Cracked screen, dead pixels, unresponsive or broken keys — replaced and restored to full working condition.' },
+  { title: 'Virus & Malware Removal', description: 'Deep clean of all malicious software and bloatware, with security hardening to prevent future infections.' },
+  { title: 'Performance Cleanup', description: 'Slow laptop brought back to speed — startup programs cleared, system settings optimized, resources freed up.' },
 ]
 
 function LaptopRepair() {
-  const navigate = useNavigate()
-
   return (
-    <div style={{ minHeight: '100vh', background: '#0e0e0e', padding: '4rem 1.5rem' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-
-        <button
-          onClick={() => navigate('/')}
-          style={{ background: 'none', border: 'none', color: '#8a6d00', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', marginBottom: '3rem', padding: 0 }}
-          onMouseEnter={e => { e.currentTarget.style.color = '#d4a017' }}
-          onMouseLeave={e => { e.currentTarget.style.color = '#8a6d00' }}
-        >
-          ← Back to Home
-        </button>
-
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>💻</span>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>— RO Digital —</p>
-          <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            Laptop Repair
-          </h1>
-          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto 1.5rem' }} />
-          <p style={{ fontSize: '0.9rem', color: '#a08020', lineHeight: '1.8', maxWidth: '500px', margin: '0 auto' }}>
-            Professional laptop repair service in the Lokeren area. Fast diagnostics, honest pricing, no unnecessary replacements.
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gap: '1.5rem', marginBottom: '4rem' }}>
-          {details.map((item) => (
-            <div key={item.title} style={{ border: '1px solid #3a2e00', padding: '2rem', background: '#111111', transition: 'border-color 0.3s' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#d4a017' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#3a2e00' }}
-            >
-              <h3 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-                {item.title}
-              </h3>
-              <div style={{ width: '2rem', height: '1px', background: '#7a5c00', marginBottom: '0.75rem' }} />
-              <p style={{ fontSize: '0.85rem', color: '#a08020', lineHeight: '1.8', margin: 0 }}>{item.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ textAlign: 'center', border: '1px solid #b8860b', padding: '2.5rem', background: '#111111' }}>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '1rem' }}>— Get In Touch —</p>
-          <p style={{ fontSize: '0.9rem', color: '#a08020', marginBottom: '1.5rem', lineHeight: '1.8' }}>
-            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Contact us for a free diagnosis.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://wa.me/32483318412" style={{ padding: '0.75rem 2rem', background: '#d4a017', color: '#000', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', fontWeight: '700' }}>
-              WhatsApp Us
-            </a>
-            <button onClick={() => navigate('/#contact')} style={{ padding: '0.75rem 2rem', border: '1px solid #d4a017', background: 'none', color: '#d4a017', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>
-              Send Message
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
+    <ServicePage
+      icon="💻"
+      title="Laptop Repair"
+      description="Fast diagnostics, honest pricing. No unnecessary replacements — we fix what's actually broken."
+      details={details}
+    />
   )
 }
 

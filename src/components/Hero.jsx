@@ -55,7 +55,6 @@ function Hero() {
     }}>
 
       <div style={glowBg} />
-
       <div style={goldLine} />
 
       <span style={{
@@ -94,23 +93,22 @@ function Hero() {
       </p>
 
       <p style={{
-        fontSize: '0.8rem',
-        letterSpacing: '0.2em',
+        fontSize: '0.9rem',
         color: '#a08020',
-        textTransform: 'uppercase',
         marginBottom: '0.5rem',
+        lineHeight: '1.6',
       }}>
-        System Repair — Biological or Digital
+        Your local tech fix in Lokeren & surroundings.
       </p>
 
       <p style={{
-        fontSize: '0.7rem',
-        letterSpacing: '0.2em',
+        fontSize: '0.8rem',
+        letterSpacing: '0.1em',
         color: '#8a6d00',
         textTransform: 'uppercase',
         marginBottom: '2.5rem',
       }}>
-        Restore. Optimize. Elevate.
+        Laptops · Phones · Websites — Handled.
       </p>
 
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2.5rem' }}>

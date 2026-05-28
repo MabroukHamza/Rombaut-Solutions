@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import ScrollToHash from './components/ScrollToHash'
+import ThemeToggle from './components/ThemeToggle'
 import Home from './pages/Home'
 import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <ScrollToHash />
+      <ThemeToggle />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/laptop-repair" element={<LaptopRepair />} />

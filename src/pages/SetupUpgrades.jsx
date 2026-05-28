@@ -1,84 +1,20 @@
-import { useNavigate } from 'react-router-dom'
+import ServicePage from './ServicePage'
 
 const details = [
-  {
-    title: 'New Laptop Setup',
-    description: 'Got a new laptop? We set it up from scratch — OS configuration, essential software, security settings, and everything transferred from your old machine.',
-  },
-  {
-    title: 'RAM & SSD Upgrades',
-    description: 'The most cost-effective way to breathe new life into an aging laptop. More RAM means better multitasking, an SSD means dramatically faster boot and load times.',
-  },
-  {
-    title: 'Software Installation',
-    description: 'Clean installation of all the software you need — productivity tools, security suites, drivers, and custom configurations tailored to your workflow.',
-  },
-  {
-    title: 'Data Migration',
-    description: 'Switching devices? We transfer all your files, settings, and applications safely to your new machine without losing anything.',
-  },
+  { title: 'New Laptop Setup', description: 'OS configuration, essential software, security settings, and everything transferred from your old machine — ready to use from day one.' },
+  { title: 'RAM & SSD Upgrades', description: 'More RAM fixes slow multitasking. An SSD fixes slow boot times. Often the cheapest way to make an old machine feel new.' },
+  { title: 'Software Installation', description: 'Clean install of the tools you actually need — productivity apps, security software, drivers, and custom configurations for your workflow.' },
+  { title: 'Data Migration', description: 'All your files, settings, and applications moved safely to your new device without losing anything.' },
 ]
 
 function SetupUpgrades() {
-  const navigate = useNavigate()
-
   return (
-    <div style={{ minHeight: '100vh', background: '#0e0e0e', padding: '4rem 1.5rem' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-
-        <button
-          onClick={() => navigate('/')}
-          style={{ background: 'none', border: 'none', color: '#8a6d00', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer', marginBottom: '3rem', padding: 0 }}
-          onMouseEnter={e => { e.currentTarget.style.color = '#d4a017' }}
-          onMouseLeave={e => { e.currentTarget.style.color = '#8a6d00' }}
-        >
-          ← Back to Home
-        </button>
-
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>⚙️</span>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '0.75rem' }}>— RO Digital —</p>
-          <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            Setup & Upgrades
-          </h1>
-          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', margin: '0 auto 1.5rem' }} />
-          <p style={{ fontSize: '0.9rem', color: '#a08020', lineHeight: '1.8', maxWidth: '500px', margin: '0 auto' }}>
-            Whether you have a brand new device or want to maximize your existing hardware, we make sure your system runs exactly how it should.
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gap: '1.5rem', marginBottom: '4rem' }}>
-          {details.map((item) => (
-            <div key={item.title} style={{ border: '1px solid #3a2e00', padding: '2rem', background: '#111111', transition: 'border-color 0.3s' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#d4a017' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#3a2e00' }}
-            >
-              <h3 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-                {item.title}
-              </h3>
-              <div style={{ width: '2rem', height: '1px', background: '#7a5c00', marginBottom: '0.75rem' }} />
-              <p style={{ fontSize: '0.85rem', color: '#a08020', lineHeight: '1.8', margin: 0 }}>{item.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ textAlign: 'center', border: '1px solid #b8860b', padding: '2.5rem', background: '#111111' }}>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: '#8a6d00', textTransform: 'uppercase', marginBottom: '1rem' }}>— Get In Touch —</p>
-          <p style={{ fontSize: '0.9rem', color: '#a08020', marginBottom: '1.5rem', lineHeight: '1.8' }}>
-            Available in Lokeren, Gent, Serskamp & Wetteren.<br />Contact us for a free consultation.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://wa.me/32483318412" style={{ padding: '0.75rem 2rem', background: '#d4a017', color: '#000', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', fontWeight: '700' }}>
-              WhatsApp Us
-            </a>
-            <button onClick={() => navigate('/#contact')} style={{ padding: '0.75rem 2rem', border: '1px solid #d4a017', background: 'none', color: '#d4a017', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>
-              Send Message
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
+    <ServicePage
+      icon="⚙️"
+      title="Setup & Upgrades"
+      description="New device or old hardware — we make sure it runs exactly how it should."
+      details={details}
+    />
   )
 }
 
