@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { Turnstile } from '@marsidev/react-turnstile'
+import { useTheme } from '../context/ThemeContext'
 
 function Contact() {
+  const { theme } = useTheme()
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
   const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState(null)
+  const turnstileRef = useRef()
 
   const inputStyle = {
     width: '100%',
@@ -25,23 +30,33 @@ function Contact() {
 
   const handleSubmit = async e => {
     e.preventDefault()
+    if (!turnstileToken) {
+      setStatus('captcha')
+      return
+    }
     setLoading(true)
     setStatus(null)
     try {
       const res = await fetch('/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       })
       const data = await res.json()
       if (data.success) {
         setStatus('success')
         setFormData({ name: '', email: '', phone: '', message: '' })
+        turnstileRef.current?.reset()
+        setTurnstileToken(null)
       } else {
         setStatus('error')
+        turnstileRef.current?.reset()
+        setTurnstileToken(null)
       }
     } catch {
       setStatus('error')
+      turnstileRef.current?.reset()
+      setTurnstileToken(null)
     }
     setLoading(false)
   }
@@ -111,29 +126,45 @@ function Contact() {
             />
           </div>
 
+          <div style={{ marginBottom: '1.5rem' }}>
+            <Turnstile
+              ref={turnstileRef}
+              siteKey="0x4AAAAAADYcqOrPkuFgEb5O"
+              onSuccess={token => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+              options={{ theme: theme === 'dark' ? 'dark' : 'light' }}
+            />
+          </div>
+
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !turnstileToken}
             style={{
               width: '100%',
               padding: '0.85rem',
-              background: loading ? 'var(--border-card)' : 'var(--gold)',
-              color: loading ? 'var(--text-muted)' : 'var(--bg-primary)',
+              background: loading || !turnstileToken ? 'var(--border-card)' : 'var(--gold)',
+              color: loading || !turnstileToken ? 'var(--text-muted)' : 'var(--bg-primary)',
               fontSize: '0.75rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               fontFamily: 'Georgia, Times New Roman, serif',
               fontWeight: '700',
               border: 'none',
-              cursor: loading ? 'not-allowed' : 'pointer',
+              cursor: loading || !turnstileToken ? 'not-allowed' : 'pointer',
               transition: 'background 0.3s',
             }}
-            onMouseEnter={e => { if (!loading) e.currentTarget.style.background = '#f5d060' }}
-            onMouseLeave={e => { if (!loading) e.currentTarget.style.background = 'var(--gold)' }}
+            onMouseEnter={e => { if (!loading && turnstileToken) e.currentTarget.style.background = '#f5d060' }}
+            onMouseLeave={e => { if (!loading && turnstileToken) e.currentTarget.style.background = 'var(--gold)' }}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>
 
+          {status === 'captcha' && (
+            <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--gold)', textAlign: 'center', letterSpacing: '0.1em' }}>
+              Please wait for the security check to complete.
+            </p>
+          )}
           {status === 'success' && (
             <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--gold)', textAlign: 'center', letterSpacing: '0.1em' }}>
               ✓ Message sent. We will get back to you soon.

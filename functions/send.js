@@ -3,7 +3,26 @@ import { Resend } from 'resend'
 export async function onRequestPost(context) {
   const resend = new Resend(context.env.RESEND_API_KEY)
   const body = await context.request.json()
-  const { name, email, phone, message } = body
+  const { name, email, phone, message, turnstileToken } = body
+
+  // Verify Turnstile token
+  const turnstileRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      secret: context.env.TURNSTILE_SECRET_KEY,
+      response: turnstileToken,
+    }),
+  })
+
+  const turnstileData = await turnstileRes.json()
+
+  if (!turnstileData.success) {
+    return new Response(JSON.stringify({ success: false, error: 'Security check failed' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
 
   try {
     await resend.emails.send({
