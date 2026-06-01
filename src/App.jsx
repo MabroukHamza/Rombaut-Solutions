@@ -6,6 +6,8 @@ import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
 import CustomGSM from './pages/CustomGSM'
 import DigitalSolutions from './pages/DigitalSolutions'
+import Biological from './pages/Biological'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/setup-upgrades" element={<SetupUpgrades />} />
         <Route path="/custom-gsm" element={<CustomGSM />} />
         <Route path="/digital-solutions" element={<DigitalSolutions />} />
+        <Route path="/biological" element={<Biological />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )
