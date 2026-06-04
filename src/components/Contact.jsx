@@ -83,7 +83,7 @@ function Contact() {
           📱 WhatsApp
         </a>
         <a href="tel:0483318412" style={{ fontSize: '0.75rem', color: 'var(--gold)', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid var(--gold-dark)', paddingBottom: '2px' }}>
-          📞 0483 31 84 12
+          📞 Call us
         </a>
         <a href="https://www.instagram.com/rombaut.solutions" style={{ fontSize: '0.75rem', color: 'var(--gold)', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid var(--gold-dark)', paddingBottom: '2px' }}>
           📸 Instagram
