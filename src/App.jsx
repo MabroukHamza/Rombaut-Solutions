@@ -8,12 +8,14 @@ import CustomGSM from './pages/CustomGSM'
 import DigitalSolutions from './pages/DigitalSolutions'
 import Biological from './pages/Biological'
 import NotFound from './pages/NotFound'
+import Cosmetics from './pages/Cosmetics'
+import LanguageToggle from './components/LanguageToggle'
 
 function App() {
   return (
     <>
       <ScrollToHash />
-      <ThemeToggle />
+      <ThemeToggle /> <LanguageToggle />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/laptop-repair" element={<LaptopRepair />} />
@@ -21,6 +23,7 @@ function App() {
         <Route path="/custom-gsm" element={<CustomGSM />} />
         <Route path="/digital-solutions" element={<DigitalSolutions />} />
         <Route path="/biological" element={<Biological />} />
+        <Route path="/cosmetics" element={<Cosmetics />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
