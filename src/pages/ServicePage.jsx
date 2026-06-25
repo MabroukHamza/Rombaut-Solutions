@@ -1,9 +1,29 @@
 import { useNavigate } from 'react-router-dom'
-import { useTheme } from '../context/ThemeContext'
+import { useLang } from '../context/LanguageContext'
+
+const labels = {
+  nl: {
+    back: '← Terug naar Home',
+    tag: '— RO Digital —',
+    cta: '— Neem Contact Op —',
+    location: 'Lokeren, Gent, Serskamp & Wetteren.\nNeem contact op en we regelen de rest.',
+    whatsapp: 'WhatsApp',
+    message: 'Stuur een Bericht',
+  },
+  en: {
+    back: '← Back to Home',
+    tag: '— RO Digital —',
+    cta: '— Get In Touch —',
+    location: 'Lokeren, Gent, Serskamp & Wetteren.\nContact us and we will take it from there.',
+    whatsapp: 'WhatsApp Us',
+    message: 'Send a Message',
+  },
+}
 
 function ServicePage({ icon, title, description, details }) {
   const navigate = useNavigate()
-  const { theme } = useTheme()
+  const { lang } = useLang()
+  const l = labels[lang]
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', padding: '4rem 1.5rem', transition: 'background 0.3s' }}>
@@ -15,12 +35,12 @@ function ServicePage({ icon, title, description, details }) {
           onMouseEnter={e => { e.currentTarget.style.color = 'var(--gold)' }}
           onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)' }}
         >
-          ← Back to Home
+          {l.back}
         </button>
 
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>{icon}</span>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>— RO Digital —</p>
+          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>{l.tag}</p>
           <h1 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: 'var(--gold)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
             {title}
           </h1>
@@ -47,16 +67,16 @@ function ServicePage({ icon, title, description, details }) {
         </div>
 
         <div style={{ textAlign: 'center', border: '1px solid var(--gold)', padding: '2.5rem', background: 'var(--bg-card)', transition: 'background 0.3s' }}>
-          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '1rem' }}>{details.cta || '— Get In Touch —'}</p>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: '1.8' }}>
-            Lokeren, Gent, Serskamp & Wetteren.<br />Contact us and we will take it from there.
+          <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '1rem' }}>{l.cta}</p>
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
+            {l.location}
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="https://wa.me/32483318412" style={{ padding: '0.75rem 2rem', background: 'var(--gold)', color: 'var(--bg-primary)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', fontWeight: '700' }}>
-              WhatsApp Us
+              {l.whatsapp}
             </a>
             <button onClick={() => navigate('/#contact')} style={{ padding: '0.75rem 2rem', border: '1px solid var(--gold)', background: 'none', color: 'var(--gold)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>
-              Send a Message
+              {l.message}
             </button>
           </div>
         </div>

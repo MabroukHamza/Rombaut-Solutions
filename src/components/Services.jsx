@@ -1,44 +1,89 @@
 import { useNavigate } from 'react-router-dom'
+import { useLang } from '../context/LanguageContext'
 
-const services = [
-  {
-    icon: '💻',
-    title: 'Laptop Repair',
-    items: ['Hardware diagnostics', 'Screen & keyboard repair', 'Virus removal', 'Performance cleanup'],
-    route: '/laptop-repair',
-  },
-  {
-    icon: '⚙️',
-    title: 'Setup & Upgrades',
-    items: ['New laptop setup', 'RAM & SSD upgrades', 'Software installation', 'Data migration'],
-    route: '/setup-upgrades',
-  },
-  {
-    icon: '📱',
-    title: 'Custom GSM Service',
-    items: ['Custom service plan per client', 'Troubleshooting', 'App & storage management', 'Privacy phones'],
-    route: '/custom-gsm',
-  },
-  {
-    icon: '🌐',
-    title: 'Digital Solutions',
-    items: ['Websites & landing pages', 'AI tools integration', 'Business systems', 'IT support'],
-    route: '/digital-solutions',
-  },
-]
+const servicesData = {
+  nl: [
+    {
+      icon: '💻',
+      title: 'Laptop Reparatie',
+      items: ['Hardware diagnostics', 'Scherm & toetsenbord reparatie', 'Virusverwijdering', 'Prestatie-optimalisatie'],
+      route: '/laptop-repair',
+      cta: 'Meer info',
+    },
+    {
+      icon: '⚙️',
+      title: 'Setup & Upgrades',
+      items: ['Nieuwe laptop instellen', 'RAM & SSD upgrades', 'Software installatie', 'Data migratie'],
+      route: '/setup-upgrades',
+      cta: 'Meer info',
+    },
+    {
+      icon: '📱',
+      title: 'Custom GSM Service',
+      items: ['Persoonlijk service plan', 'Probleemoplossing', 'App & opslagbeheer', 'Privacy telefoons'],
+      route: '/custom-gsm',
+      cta: 'Meer info',
+    },
+    {
+      icon: '🌐',
+      title: 'Digitale Oplossingen',
+      items: ['Websites & landingspagina\'s', 'AI tools integratie', 'Bedrijfssystemen', 'IT ondersteuning'],
+      route: '/digital-solutions',
+      cta: 'Meer info',
+    },
+  ],
+  en: [
+    {
+      icon: '💻',
+      title: 'Laptop Repair',
+      items: ['Hardware diagnostics', 'Screen & keyboard repair', 'Virus removal', 'Performance cleanup'],
+      route: '/laptop-repair',
+      cta: 'Learn More',
+    },
+    {
+      icon: '⚙️',
+      title: 'Setup & Upgrades',
+      items: ['New laptop setup', 'RAM & SSD upgrades', 'Software installation', 'Data migration'],
+      route: '/setup-upgrades',
+      cta: 'Learn More',
+    },
+    {
+      icon: '📱',
+      title: 'Custom GSM Service',
+      items: ['Custom service plan per client', 'Troubleshooting', 'App & storage management', 'Privacy phones'],
+      route: '/custom-gsm',
+      cta: 'Learn More',
+    },
+    {
+      icon: '🌐',
+      title: 'Digital Solutions',
+      items: ['Websites & landing pages', 'AI tools integration', 'Business systems', 'IT support'],
+      route: '/digital-solutions',
+      cta: 'Learn More',
+    },
+  ],
+}
+
+const labels = {
+  nl: { what: '— Wat We Doen —', title: 'Onze Services' },
+  en: { what: '— What We Do —', title: 'Our Services' },
+}
 
 function Services() {
   const navigate = useNavigate()
+  const { lang } = useLang()
+  const services = servicesData[lang]
+  const l = labels[lang]
 
   return (
     <section id="services" style={{ padding: '6rem 1.5rem', maxWidth: '1100px', margin: '0 auto', transition: 'background 0.3s' }}>
 
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-          — What We Do —
+          {l.what}
         </p>
         <h2 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '2rem', fontWeight: '700', color: 'var(--gold)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-          Our Services
+          {l.title}
         </h2>
         <div style={{ background: 'linear-gradient(to right, transparent, var(--gold), transparent)', height: '1px', width: '12rem', margin: '0 auto' }} />
       </div>
@@ -99,7 +144,7 @@ function Services() {
               borderBottom: '1px solid var(--gold-dark)',
               paddingBottom: '2px',
             }}>
-              Learn More
+              {service.cta}
             </span>
           </div>
         ))}

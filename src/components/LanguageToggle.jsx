@@ -8,7 +8,7 @@ function LanguageToggle() {
   const location = useLocation()
 
   // Only show on cosmetics page
-  if (!location.pathname.startsWith('/cosmetics')) return null
+ // if (!location.pathname.startsWith('/cosmetics')) return null
 
   const isDark = theme === 'dark'
 
