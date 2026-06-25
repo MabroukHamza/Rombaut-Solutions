@@ -39,33 +39,6 @@ const content = {
 
 const products = [
   {
-    category: { nl: 'Tijdelijke Tattoos', en: 'Temporary Tattoos' },
-    icon: '🖋',
-    hasAI: true,
-    items: [
-      {
-        name: { nl: 'Classic Tattoo Design', en: 'Classic Tattoo Design' },
-        price: 'vanaf €19,99',
-        description: { nl: 'Klant beschrijft tattoo met woorden. Wij maken het design.', en: 'Customer describes the tattoo in words. We create the design.' }
-      },
-      {
-        name: { nl: 'Photo-to-Tattoo', en: 'Photo-to-Tattoo' },
-        price: 'vanaf €29,99',
-        description: { nl: 'Klant uploadt foto. Wij verwerken het tot een tattoo design. Foto\'s vragen meer verwerking.', en: 'Customer uploads a photo. We turn it into a tattoo design. Photos require more processing.' }
-      },
-      {
-        name: { nl: 'Sketch Cleanup', en: 'Sketch Cleanup' },
-        price: 'vanaf €24,99',
-        description: { nl: 'Klant uploadt schets. Wij maken het clean en tattoo-ready.', en: 'Customer uploads a sketch. We clean it up and make it tattoo-ready.' }
-      },
-      {
-        name: { nl: 'Upload Ready Design', en: 'Upload Ready Design' },
-        price: 'vanaf €9,99',
-        description: { nl: 'Klant heeft al een perfecte tattoo/design. Wij maken het print-ready.', en: 'Customer already has a perfect tattoo/design. We make it print-ready.' }
-      },
-    ]
-  },
-  {
     category: { nl: 'Gel Nagels', en: 'Gel Nails' },
     icon: '💅',
     hasAI: false,
@@ -99,42 +72,12 @@ const products = [
 
 function Cosmetics() {
   const [showPreview, setShowPreview] = useState(false)
-  const [showAI, setShowAI] = useState(false)
   const navigate = useNavigate()
   const { lang } = useLang()
   const t = content[lang]
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', transition: 'background 0.3s', position: 'relative' }}>
-
-      {/* AI Coming Soon Modal */}
-      {showAI && (
-        <div style={{
-          position: 'fixed', inset: 0, zIndex: 200,
-          background: 'rgba(10, 8, 4, 0.97)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center', padding: '2rem', backdropFilter: 'blur(8px)',
-        }}>
-          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', marginBottom: '2.5rem' }} />
-          <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>✦</span>
-          <h2 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1.5rem', fontWeight: '700', color: '#d4a017', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            {t.aiComingSoon}
-          </h2>
-          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', marginBottom: '2rem' }} />
-          <p style={{ fontSize: '0.85rem', color: '#a08020', lineHeight: '1.8', maxWidth: '420px', marginBottom: '2.5rem' }}>
-            {t.aiComingSoonSub}
-          </p>
-          <button
-            onClick={() => setShowAI(false)}
-            style={{ padding: '0.75rem 2rem', border: '1px solid #d4a017', color: '#d4a017', background: 'transparent', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Georgia, Times New Roman, serif', transition: 'all 0.3s' }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#d4a017'; e.currentTarget.style.color = '#000' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#d4a017' }}
-          >
-            {t.aiClose}
-          </button>
-          <div style={{ background: 'linear-gradient(to right, transparent, #d4a017, transparent)', height: '1px', width: '12rem', marginTop: '2.5rem' }} />
-        </div>
-      )}
 
       {/* Coming Soon Overlay */}
       {!showPreview && (
@@ -190,16 +133,6 @@ function Cosmetics() {
                   {cat.category[lang]}
                 </h2>
               </div>
-              {cat.hasAI && (
-                <button
-                  onClick={() => setShowAI(true)}
-                  style={{ padding: '0.5rem 1.25rem', border: '1px solid var(--gold)', color: 'var(--gold)', background: 'transparent', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'Georgia, Times New Roman, serif', transition: 'all 0.3s', borderRadius: '20px' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--bg-primary)' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--gold)' }}
-                >
-                  {t.aiBtn}
-                </button>
-              )}
             </div>
             <div style={{ height: '1px', background: 'linear-gradient(to right, var(--gold), transparent)', marginBottom: '1.5rem' }} />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>

@@ -10,6 +10,7 @@ import Biological from './pages/Biological'
 import NotFound from './pages/NotFound'
 import Cosmetics from './pages/Cosmetics'
 import LanguageToggle from './components/LanguageToggle'
+import InkTrial from './pages/InkTrial'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/digital-solutions" element={<DigitalSolutions />} />
         <Route path="/biological" element={<Biological />} />
         <Route path="/cosmetics" element={<Cosmetics />} />
+        <Route path="/inktrail" element={<InkTrial />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
