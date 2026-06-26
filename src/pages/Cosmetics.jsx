@@ -168,7 +168,7 @@ function Cosmetics() {
         </div>
 
         <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '0.65rem', color: 'var(--border-dark)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-          © 2025 RO Cosmetics — Rombaut Solutions
+          © 2026 RO Cosmetics — Rombaut Solutions
         </p>
       </div>
     </div>

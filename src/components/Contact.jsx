@@ -21,7 +21,7 @@ const content = {
     captcha: 'Wacht tot de beveiligingscheck klaar is.',
     success: '✓ Bericht verzonden. We nemen snel contact op.',
     error: '✕ Er ging iets mis. Probeer WhatsApp of bel ons.',
-    footer: '© 2025 Rombaut Solutions — RO Digital',
+    footer: '© 2026 Rombaut Solutions — RO Digital',
   },
   en: {
     label: '— Contact —',
@@ -40,7 +40,7 @@ const content = {
     captcha: 'Please wait for the security check to complete.',
     success: '✓ Message sent. We will get back to you soon.',
     error: '✕ Something went wrong. Try WhatsApp or call us directly.',
-    footer: '© 2025 Rombaut Solutions — RO Digital',
+    footer: '© 2026 Rombaut Solutions — RO Digital',
   },
 }
 

@@ -9,7 +9,7 @@ const content = {
     email: '✉ E-mail',
     instagram: '📸 Instagram',
     built: 'Een project van Rombaut Solutions',
-    footer: '© 2025 Inktrail — by Rombaut Solutions',
+    footer: '© 2026 Inktrail — by Rombaut Solutions',
     footerSub: 'inktrail.rombautsolutions.be',
   },
   en: {
@@ -20,7 +20,7 @@ const content = {
     email: '✉ Email',
     instagram: '📸 Instagram',
     built: 'A project by Rombaut Solutions',
-    footer: '© 2025 Inktrail — by Rombaut Solutions',
+    footer: '© 2026 Inktrail — by Rombaut Solutions',
     footerSub: 'inktrail.rombautsolutions.be',
   },
 }
