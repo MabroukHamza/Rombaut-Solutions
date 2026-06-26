@@ -1,3 +1,22 @@
+import { useLang } from '../context/LanguageContext'
+
+const content = {
+  nl: {
+    tagline: '— RO Digital —',
+    sub1: 'Jouw lokale technologie-expert in Lokeren & omgeving.',
+    sub2: 'Laptops · Telefoons · Websites — Geregeld.',
+    services: 'Onze Services',
+    contact: 'Neem Contact Op',
+  },
+  en: {
+    tagline: '— RO Digital —',
+    sub1: 'Your local tech fix in Lokeren & surroundings.',
+    sub2: 'Laptops · Phones · Websites — Handled.',
+    services: 'Our Services',
+    contact: 'Get In Touch',
+  },
+}
+
 const goldLine = {
   background: 'linear-gradient(to right, transparent, #d4a017, transparent)',
   height: '1px',
@@ -41,6 +60,9 @@ const btnFilled = {
 }
 
 function Hero() {
+  const { lang } = useLang()
+  const t = content[lang]
+
   return (
     <section style={{
       minHeight: '100vh',
@@ -89,7 +111,7 @@ function Hero() {
         textTransform: 'uppercase',
         marginBottom: '1.5rem',
       }}>
-        — RO Digital —
+        {t.tagline}
       </p>
 
       <p style={{
@@ -98,7 +120,7 @@ function Hero() {
         marginBottom: '0.5rem',
         lineHeight: '1.6',
       }}>
-        Your local tech fix in Lokeren & surroundings.
+        {t.sub1}
       </p>
 
       <p style={{
@@ -108,7 +130,7 @@ function Hero() {
         textTransform: 'uppercase',
         marginBottom: '2.5rem',
       }}>
-        Laptops · Phones · Websites — Handled.
+        {t.sub2}
       </p>
 
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2.5rem' }}>
@@ -118,7 +140,7 @@ function Hero() {
           onMouseEnter={e => { e.currentTarget.style.background = '#d4a017'; e.currentTarget.style.color = '#000'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#d4a017'; }}
         >
-          Our Services
+          {t.services}
         </a>
         <a
           href="#contact"
@@ -126,7 +148,7 @@ function Hero() {
           onMouseEnter={e => { e.currentTarget.style.background = '#f5d060'; }}
           onMouseLeave={e => { e.currentTarget.style.background = '#d4a017'; }}
         >
-          Get In Touch
+          {t.contact}
         </a>
       </div>
 
