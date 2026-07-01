@@ -3,18 +3,18 @@ import { useLang } from '../context/LanguageContext'
 
 const navContent = {
   nl: [
-    { label: 'Home', href: '#home' },
-    { label: 'Services', href: '#services' },
-    { label: 'Waarom', href: '#why' },
-    { label: 'AI', href: '#ai' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/#home' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Waarom', href: '/#why' },
+    { label: 'AI', href: '/ai-designer' },
+    { label: 'Contact', href: '/#contact' },
   ],
   en: [
-    { label: 'Home', href: '#home' },
-    { label: 'Services', href: '#services' },
-    { label: 'Why', href: '#why' },
-    { label: 'AI', href: '#ai' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/#home' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Why', href: '/#why' },
+    { label: 'AI', href: '/ai-designer' },
+    { label: 'Contact', href: '/#contact' },
   ],
 }
 
@@ -44,7 +44,7 @@ function Navbar() {
       transition: 'background 0.4s, border-color 0.4s',
     }}>
       {/* Logo */}
-      <a href="#home" style={{ textDecoration: 'none' }}>
+      <a href="/#home" style={{ textDecoration: 'none' }}>
         <span style={{
           fontFamily: "'UnifrakturMaguntia', Georgia, serif",
           fontSize: '1.5rem',
