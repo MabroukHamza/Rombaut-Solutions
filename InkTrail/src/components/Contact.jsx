@@ -1,79 +1,7 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { Turnstile } from '@marsidev/react-turnstile'
 import { useLang } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
-
-let turnstileScriptPromise
-
-function loadTurnstileScript() {
-  if (window.turnstile) return Promise.resolve(window.turnstile)
-  if (turnstileScriptPromise) return turnstileScriptPromise
-
-  turnstileScriptPromise = new Promise((resolve, reject) => {
-    const existingScript = document.querySelector('script[data-turnstile-script]')
-    if (existingScript) {
-      existingScript.addEventListener('load', () => resolve(window.turnstile), { once: true })
-      existingScript.addEventListener('error', reject, { once: true })
-      return
-    }
-
-    const script = document.createElement('script')
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
-    script.async = true
-    script.defer = true
-    script.dataset.turnstileScript = 'true'
-    script.onload = () => resolve(window.turnstile)
-    script.onerror = reject
-    document.head.appendChild(script)
-  })
-
-  return turnstileScriptPromise
-}
-
-const TurnstileWidget = forwardRef(function TurnstileWidget({ siteKey, options, onSuccess, onExpire, onError }, ref) {
-  const containerRef = useRef(null)
-  const widgetIdRef = useRef(null)
-  const callbacksRef = useRef({ onSuccess, onExpire, onError })
-
-  useEffect(() => {
-    callbacksRef.current = { onSuccess, onExpire, onError }
-  }, [onSuccess, onExpire, onError])
-
-  useImperativeHandle(ref, () => ({
-    reset() {
-      if (window.turnstile && widgetIdRef.current) {
-        window.turnstile.reset(widgetIdRef.current)
-      }
-    },
-  }), [])
-
-  useEffect(() => {
-    let cancelled = false
-
-    loadTurnstileScript()
-      .then(turnstile => {
-        if (cancelled || !containerRef.current || widgetIdRef.current) return
-
-        widgetIdRef.current = turnstile.render(containerRef.current, {
-          sitekey: siteKey,
-          theme: options?.theme || 'light',
-          callback: token => callbacksRef.current.onSuccess?.(token),
-          'expired-callback': () => callbacksRef.current.onExpire?.(),
-          'error-callback': () => callbacksRef.current.onError?.(),
-        })
-      })
-      .catch(() => callbacksRef.current.onError?.())
-
-    return () => {
-      cancelled = true
-      if (window.turnstile && widgetIdRef.current) {
-        window.turnstile.remove(widgetIdRef.current)
-        widgetIdRef.current = null
-      }
-    }
-  }, [siteKey, options?.theme])
-
-  return <div ref={containerRef} />
-})
 
 const content = {
   nl: {
@@ -160,11 +88,6 @@ function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const resetTurnstile = () => {
-    turnstileRef.current?.reset()
-    setTurnstileToken(null)
-  }
-
   const handleSubmit = async e => {
     e.preventDefault()
     if (!turnstileToken) {
@@ -190,14 +113,14 @@ function Contact() {
       if (data.success) {
         setStatus('success')
         setFormData({ name: '', email: '', phone: '', message: '' })
+        turnstileRef.current?.reset(); setTurnstileToken(null)
       } else {
-        setStatus('error')
+        setStatus('error'); turnstileRef.current?.reset(); setTurnstileToken(null)
       }
     } catch {
-      setStatus('error')
+      setStatus('error'); turnstileRef.current?.reset(); setTurnstileToken(null)
     }
 
-    resetTurnstile()
     setLoading(false)
   }
 
@@ -312,7 +235,7 @@ function Contact() {
           </div>
 
           <div style={{ marginBottom: '1.5rem' }}>
-            <TurnstileWidget
+            <Turnstile
               ref={turnstileRef}
               siteKey="0x4AAAAAADYcqOrPkuFgEb5O"
               onSuccess={token => setTurnstileToken(token)}
