@@ -9,6 +9,7 @@ import DigitalSolutions from './pages/DigitalSolutions'
 import Biological from './pages/Biological'
 import NotFound from './pages/NotFound'
 import Cosmetics from './pages/Cosmetics'
+import Privacy from './pages/Privacy'
 import LanguageToggle from './components/LanguageToggle'
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/digital-solutions" element={<DigitalSolutions />} />
         <Route path="/biological" element={<Biological />} />
         <Route path="/cosmetics" element={<Cosmetics />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

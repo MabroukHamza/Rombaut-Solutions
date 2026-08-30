@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 
 const labels = {
@@ -9,6 +9,7 @@ const labels = {
     location: 'Lokeren, Gent, Serskamp & Wetteren.\nNeem contact op en we regelen de rest.',
     whatsapp: 'WhatsApp',
     message: 'Stuur een Bericht',
+    privacy: 'Privacybeleid',
   },
   en: {
     back: '← Back to Home',
@@ -17,6 +18,7 @@ const labels = {
     location: 'Lokeren, Gent, Serskamp & Wetteren.\nContact us and we will take it from there.',
     whatsapp: 'WhatsApp Us',
     message: 'Send a Message',
+    privacy: 'Privacy Policy',
   },
 }
 
@@ -80,6 +82,12 @@ function ServicePage({ icon, title, description, details }) {
             </button>
           </div>
         </div>
+
+        <p style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <Link to="/privacy" style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            {l.privacy}
+          </Link>
+        </p>
 
       </div>
     </div>

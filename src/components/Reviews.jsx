@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { useTheme } from '../context/ThemeContext'
 import { useLang } from '../context/LanguageContext'
@@ -24,6 +25,10 @@ const content = {
     captcha: 'Wacht tot de beveiligingscheck klaar is.',
     success: '✓ Bedankt voor uw review!',
     error: '✕ Er ging iets mis. Probeer het later opnieuw.',
+    rateLimited: '✕ Te veel pogingen. Probeer het later opnieuw.',
+    consentRequired: 'Gelieve akkoord te gaan met het privacybeleid.',
+    consentLabel: 'Ik ga akkoord met het',
+    consentLink: 'privacybeleid',
     anonymous: 'Anoniem',
   },
   en: {
@@ -46,6 +51,10 @@ const content = {
     captcha: 'Please wait for the security check to complete.',
     success: '✓ Thank you for your review!',
     error: '✕ Something went wrong. Please try again later.',
+    rateLimited: '✕ Too many attempts. Please try again later.',
+    consentRequired: 'Please agree to the privacy policy.',
+    consentLabel: 'I agree to the',
+    consentLink: 'privacy policy',
     anonymous: 'Anonymous',
   },
 }
@@ -74,6 +83,7 @@ function Reviews() {
   const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(false)
   const [turnstileToken, setTurnstileToken] = useState(null)
+  const [consent, setConsent] = useState(false)
   const turnstileRef = useRef()
 
   useEffect(() => {
@@ -105,12 +115,17 @@ function Reviews() {
   const handleSubmit = async e => {
     e.preventDefault()
     if (!turnstileToken) { setStatus('captcha'); return }
+    if (!consent) { setStatus('consent'); return }
+
+    const trimmed = { name: formData.name.trim(), comment: formData.comment.trim() }
+    if (!trimmed.comment) { setStatus('error'); return }
+
     setLoading(true); setStatus(null)
     try {
       const res = await fetch('/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, rating, turnstileToken }),
+        body: JSON.stringify({ ...trimmed, rating, turnstileToken }),
       })
       const data = await res.json()
       if (data.success) {
@@ -118,9 +133,11 @@ function Reviews() {
         setReviews(prev => [data.review, ...prev])
         setFormData({ name: '', comment: '' })
         setRating(5)
+        setConsent(false)
         turnstileRef.current?.reset(); setTurnstileToken(null)
       } else {
-        setStatus('error'); turnstileRef.current?.reset(); setTurnstileToken(null)
+        setStatus(res.status === 429 ? 'rateLimited' : 'error')
+        turnstileRef.current?.reset(); setTurnstileToken(null)
       }
     } catch {
       setStatus('error'); turnstileRef.current?.reset(); setTurnstileToken(null)
@@ -273,30 +290,45 @@ function Reviews() {
               />
             </div>
 
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={e => setConsent(e.target.checked)}
+                style={{ marginTop: '0.15rem' }}
+              />
+              <span>
+                {t.consentLabel}{' '}
+                <Link to="/privacy" style={{ color: 'var(--gold)' }}>{t.consentLink}</Link>
+              </span>
+            </label>
+
             <button
               type="submit"
-              disabled={loading || !turnstileToken}
+              disabled={loading || !turnstileToken || !consent}
               style={{
                 width: '100%',
                 padding: '0.85rem',
-                background: loading || !turnstileToken ? 'var(--border-card)' : 'var(--gold)',
-                color: loading || !turnstileToken ? 'var(--text-muted)' : 'var(--bg-primary)',
+                background: loading || !turnstileToken || !consent ? 'var(--border-card)' : 'var(--gold)',
+                color: loading || !turnstileToken || !consent ? 'var(--text-muted)' : 'var(--bg-primary)',
                 fontSize: '0.75rem',
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 fontFamily: 'Georgia, Times New Roman, serif',
                 fontWeight: '700',
                 border: 'none',
-                cursor: loading || !turnstileToken ? 'not-allowed' : 'pointer',
+                cursor: loading || !turnstileToken || !consent ? 'not-allowed' : 'pointer',
                 transition: 'background 0.3s',
               }}
-              onMouseEnter={e => { if (!loading && turnstileToken) e.currentTarget.style.background = '#f5d060' }}
-              onMouseLeave={e => { if (!loading && turnstileToken) e.currentTarget.style.background = 'var(--gold)' }}
+              onMouseEnter={e => { if (!loading && turnstileToken && consent) e.currentTarget.style.background = '#f5d060' }}
+              onMouseLeave={e => { if (!loading && turnstileToken && consent) e.currentTarget.style.background = 'var(--gold)' }}
             >
               {loading ? t.submitting : t.submit}
             </button>
 
             {status === 'captcha' && <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--gold)', textAlign: 'center', letterSpacing: '0.1em' }}>{t.captcha}</p>}
+            {status === 'consent' && <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--gold)', textAlign: 'center', letterSpacing: '0.1em' }}>{t.consentRequired}</p>}
+            {status === 'rateLimited' && <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#c0392b', textAlign: 'center', letterSpacing: '0.1em' }}>{t.rateLimited}</p>}
             {status === 'success' && <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--gold)', textAlign: 'center', letterSpacing: '0.1em' }}>{t.success}</p>}
             {status === 'error' && <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#c0392b', textAlign: 'center', letterSpacing: '0.1em' }}>{t.error}</p>}
           </form>
