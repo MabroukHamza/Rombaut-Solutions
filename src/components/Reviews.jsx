@@ -14,7 +14,8 @@ const content = {
     writeReview: '✍️ Schrijf een Review',
     cancel: 'Annuleren',
     name: 'Naam',
-    namePh: 'Uw naam (optioneel — blijft anoniem indien leeg)',
+    namePh: 'Uw naam',
+    nameHint: 'Optioneel — blijft anoniem indien leeg',
     rating: 'Beoordeling',
     comment: 'Uw Ervaring',
     commentPh: 'Vertel over uw ervaring met Rombaut Solutions...',
@@ -35,7 +36,8 @@ const content = {
     writeReview: '✍️ Write a Review',
     cancel: 'Cancel',
     name: 'Name',
-    namePh: 'Your name (optional — stays anonymous if left blank)',
+    namePh: 'Your name',
+    nameHint: 'Optional — stays anonymous if left blank',
     rating: 'Rating',
     comment: 'Your Experience',
     commentPh: 'Tell us about your experience with Rombaut Solutions...',
@@ -90,8 +92,6 @@ function Reviews() {
     background: 'var(--bg-card)',
     border: '1px solid var(--border-card)',
     color: 'var(--text-primary)',
-    fontSize: '0.85rem',
-    letterSpacing: '0.05em',
     outline: 'none',
     transition: 'border-color 0.3s, background 0.3s',
     boxSizing: 'border-box',
@@ -219,10 +219,11 @@ function Reviews() {
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1rem' }}>
               <label style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '0.5rem' }}>{t.name}</label>
-              <input name="name" type="text" placeholder={t.namePh} value={formData.name} onChange={handleChange} style={inputStyle}
+              <input name="name" type="text" placeholder={t.namePh} value={formData.name} onChange={handleChange} className="form-input" style={inputStyle}
                 onFocus={e => { e.target.style.borderColor = 'var(--gold)' }}
                 onBlur={e => { e.target.style.borderColor = 'var(--border-card)' }}
               />
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>{t.nameHint}</p>
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
@@ -255,7 +256,7 @@ function Reviews() {
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '0.5rem' }}>{t.comment}</label>
               <textarea name="comment" required rows={4} maxLength={600} placeholder={t.commentPh} value={formData.comment} onChange={handleChange}
-                style={{ ...inputStyle, resize: 'vertical' }}
+                className="form-input" style={{ ...inputStyle, resize: 'vertical' }}
                 onFocus={e => { e.target.style.borderColor = 'var(--gold)' }}
                 onBlur={e => { e.target.style.borderColor = 'var(--border-card)' }}
               />

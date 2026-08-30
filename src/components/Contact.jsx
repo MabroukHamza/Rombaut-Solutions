@@ -60,8 +60,6 @@ function Contact() {
     background: 'var(--bg-card)',
     border: '1px solid var(--border-card)',
     color: 'var(--text-primary)',
-    fontSize: '0.85rem',
-    letterSpacing: '0.05em',
     outline: 'none',
     transition: 'border-color 0.3s, background 0.3s',
     boxSizing: 'border-box',
@@ -129,14 +127,14 @@ function Contact() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
             <div>
               <label style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '0.5rem' }}>{t.name}</label>
-              <input name="name" type="text" required placeholder={t.namePh} value={formData.name} onChange={handleChange} style={inputStyle}
+              <input name="name" type="text" required placeholder={t.namePh} value={formData.name} onChange={handleChange} className="form-input" style={inputStyle}
                 onFocus={e => { e.target.style.borderColor = 'var(--gold)' }}
                 onBlur={e => { e.target.style.borderColor = 'var(--border-card)' }}
               />
             </div>
             <div>
               <label style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '0.5rem' }}>{t.phone}</label>
-              <input name="phone" type="tel" placeholder={t.phonePh} value={formData.phone} onChange={handleChange} style={inputStyle}
+              <input name="phone" type="tel" placeholder={t.phonePh} value={formData.phone} onChange={handleChange} className="form-input" style={inputStyle}
                 onFocus={e => { e.target.style.borderColor = 'var(--gold)' }}
                 onBlur={e => { e.target.style.borderColor = 'var(--border-card)' }}
               />
@@ -145,7 +143,7 @@ function Contact() {
 
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '0.5rem' }}>{t.email}</label>
-            <input name="email" type="email" required placeholder={t.emailPh} value={formData.email} onChange={handleChange} style={inputStyle}
+            <input name="email" type="email" required placeholder={t.emailPh} value={formData.email} onChange={handleChange} className="form-input" style={inputStyle}
               onFocus={e => { e.target.style.borderColor = 'var(--gold)' }}
               onBlur={e => { e.target.style.borderColor = 'var(--border-card)' }}
             />
@@ -154,7 +152,7 @@ function Contact() {
           <div style={{ marginBottom: '1.5rem' }}>
             <label style={{ fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '0.5rem' }}>{t.message}</label>
             <textarea name="message" required rows={5} placeholder={t.messagePh} value={formData.message} onChange={handleChange}
-              style={{ ...inputStyle, resize: 'vertical' }}
+              className="form-input" style={{ ...inputStyle, resize: 'vertical' }}
               onFocus={e => { e.target.style.borderColor = 'var(--gold)' }}
               onBlur={e => { e.target.style.borderColor = 'var(--border-card)' }}
             />
