@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 # dotenv environment variable files
 .env
 .env.*.local
+
+# Wrangler local dev secrets
+.dev.vars
