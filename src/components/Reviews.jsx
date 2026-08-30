@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { useTheme } from '../context/ThemeContext'
 import { useLang } from '../context/LanguageContext'
+import { useReveal } from '../hooks/useReveal'
+import { revealTransition, staggerDelay } from '../styles/reveal'
 
 const content = {
   nl: {
@@ -85,6 +87,7 @@ function Reviews() {
   const [turnstileToken, setTurnstileToken] = useState(null)
   const [consent, setConsent] = useState(false)
   const turnstileRef = useRef()
+  const [gridRef, gridVisible] = useReveal()
 
   useEffect(() => {
     fetch('/reviews')
@@ -146,7 +149,7 @@ function Reviews() {
   }
 
   return (
-    <section id="reviews" style={{ padding: '6rem 1.5rem', maxWidth: '900px', margin: '0 auto', transition: 'background 0.3s' }}>
+    <section id="reviews" style={{ padding: '6rem 1.5rem', maxWidth: '900px', margin: '0 auto', scrollMarginTop: '4.5rem', transition: 'background 0.3s' }}>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
@@ -177,20 +180,22 @@ function Reviews() {
       ) : reviews.length === 0 ? (
         <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-muted)', letterSpacing: '0.1em', marginBottom: '2rem' }}>{t.empty}</p>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
-          {reviews.map(r => (
+        <div ref={gridRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+          {reviews.map((r, i) => (
             <div
               key={r.id}
+              className={`reveal ${gridVisible ? 'is-visible' : ''}`}
               style={{
                 border: '1px solid var(--border-card)',
                 padding: '1.75rem',
                 background: 'var(--bg-card)',
-                transition: 'border-color 0.3s, background 0.3s',
+                transition: revealTransition,
+                transitionDelay: staggerDelay(gridVisible, i),
                 display: 'flex',
                 flexDirection: 'column',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-card)' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.boxShadow = '0 16px 36px -16px rgba(212,160,23,0.4)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-card)'; e.currentTarget.style.boxShadow = 'none' }}
             >
               <Stars rating={r.rating} />
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.7', margin: '1rem 0', flexGrow: 1 }}>
@@ -318,10 +323,10 @@ function Reviews() {
                 fontWeight: '700',
                 border: 'none',
                 cursor: loading || !turnstileToken || !consent ? 'not-allowed' : 'pointer',
-                transition: 'background 0.3s',
+                transition: 'background 0.3s, box-shadow 0.3s, transform 0.3s',
               }}
-              onMouseEnter={e => { if (!loading && turnstileToken && consent) e.currentTarget.style.background = '#f5d060' }}
-              onMouseLeave={e => { if (!loading && turnstileToken && consent) e.currentTarget.style.background = 'var(--gold)' }}
+              onMouseEnter={e => { if (!loading && turnstileToken && consent) { e.currentTarget.style.background = '#f5d060'; e.currentTarget.style.boxShadow = '0 8px 24px -8px rgba(212,160,23,0.5)'; e.currentTarget.style.transform = 'translateY(-2px)' } }}
+              onMouseLeave={e => { if (!loading && turnstileToken && consent) { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)' } }}
             >
               {loading ? t.submitting : t.submit}
             </button>

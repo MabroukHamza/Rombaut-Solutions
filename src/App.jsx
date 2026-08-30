@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import ScrollToHash from './components/ScrollToHash'
-import ThemeToggle from './components/ThemeToggle'
+import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import LaptopRepair from './pages/LaptopRepair'
 import SetupUpgrades from './pages/SetupUpgrades'
@@ -10,14 +10,13 @@ import Biological from './pages/Biological'
 import NotFound from './pages/NotFound'
 import Cosmetics from './pages/Cosmetics'
 import Privacy from './pages/Privacy'
-import LanguageToggle from './components/LanguageToggle'
 
 
 function App() {
   return (
     <>
       <ScrollToHash />
-      <ThemeToggle /> <LanguageToggle />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/laptop-repair" element={<LaptopRepair />} />

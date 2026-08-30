@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { useTheme } from '../context/ThemeContext'
 import { useLang } from '../context/LanguageContext'
+import { useReveal } from '../hooks/useReveal'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -67,6 +68,7 @@ function Contact() {
   const [turnstileToken, setTurnstileToken] = useState(null)
   const [consent, setConsent] = useState(false)
   const turnstileRef = useRef()
+  const [formRef, formVisible] = useReveal()
 
   const inputStyle = {
     width: '100%',
@@ -122,7 +124,7 @@ function Contact() {
   }
 
   return (
-    <section id="contact" style={{ padding: '6rem 1.5rem', maxWidth: '640px', margin: '0 auto', transition: 'background 0.3s' }}>
+    <section id="contact" style={{ padding: '6rem 1.5rem', maxWidth: '640px', margin: '0 auto', scrollMarginTop: '4.5rem', transition: 'background 0.3s' }}>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
@@ -149,7 +151,7 @@ function Contact() {
         </a>
       </div>
 
-      <div style={{ border: '1px solid var(--border-card)', padding: '2.5rem', background: 'var(--bg-card)', transition: 'background 0.3s, border-color 0.3s' }}>
+      <div ref={formRef} className={`reveal ${formVisible ? 'is-visible' : ''}`} style={{ border: '1px solid var(--border-card)', padding: '2.5rem', background: 'var(--bg-card)', transition: 'background 0.3s, border-color 0.3s, opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)' }}>
         <form onSubmit={handleSubmit}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
             <div>
@@ -224,10 +226,10 @@ function Contact() {
               fontWeight: '700',
               border: 'none',
               cursor: loading || !turnstileToken || !consent ? 'not-allowed' : 'pointer',
-              transition: 'background 0.3s',
+              transition: 'background 0.3s, box-shadow 0.3s, transform 0.3s',
             }}
-            onMouseEnter={e => { if (!loading && turnstileToken && consent) e.currentTarget.style.background = '#f5d060' }}
-            onMouseLeave={e => { if (!loading && turnstileToken && consent) e.currentTarget.style.background = 'var(--gold)' }}
+            onMouseEnter={e => { if (!loading && turnstileToken && consent) { e.currentTarget.style.background = '#f5d060'; e.currentTarget.style.boxShadow = '0 8px 24px -8px rgba(212,160,23,0.5)'; e.currentTarget.style.transform = 'translateY(-2px)' } }}
+            onMouseLeave={e => { if (!loading && turnstileToken && consent) { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)' } }}
           >
             {loading ? t.sending : t.send}
           </button>

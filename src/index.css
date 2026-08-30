@@ -51,3 +51,82 @@ html[data-theme='dark'] {
     font-size: 0.85rem;
   }
 }
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.13; transform: scale(1); }
+  50% { opacity: 0.22; transform: scale(1.06); }
+}
+
+.hero-glow {
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+/* Navbar */
+.nav-links {
+  display: none;
+}
+
+.nav-hamburger {
+  display: flex;
+}
+
+@media (min-width: 720px) {
+  .nav-links {
+    display: flex;
+  }
+  .nav-hamburger {
+    display: none;
+  }
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero-fade-up, .hero-glow {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
+import { useReveal } from '../hooks/useReveal'
+import { revealTransition, staggerDelay, cardHoverIn, cardHoverOut } from '../styles/reveal'
 
 const servicesData = {
   nl: [
@@ -74,9 +76,10 @@ function Services() {
   const { lang } = useLang()
   const services = servicesData[lang]
   const l = labels[lang]
+  const [gridRef, gridVisible] = useReveal()
 
   return (
-    <section id="services" style={{ padding: '6rem 1.5rem', maxWidth: '1100px', margin: '0 auto', transition: 'background 0.3s' }}>
+    <section id="services" style={{ padding: '6rem 1.5rem', maxWidth: '1100px', margin: '0 auto', scrollMarginTop: '4.5rem', transition: 'background 0.3s' }}>
 
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <p style={{ fontSize: '0.7rem', letterSpacing: '0.4em', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
@@ -88,27 +91,23 @@ function Services() {
         <div style={{ background: 'linear-gradient(to right, transparent, var(--gold), transparent)', height: '1px', width: '12rem', margin: '0 auto' }} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
-        {services.map((service) => (
+      <div ref={gridRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
+        {services.map((service, i) => (
           <div
             key={service.title}
             onClick={() => navigate(service.route)}
+            className={`reveal ${gridVisible ? 'is-visible' : ''}`}
             style={{
               border: '1px solid var(--border-card)',
               padding: '2rem 1.5rem',
               background: 'var(--bg-card)',
-              transition: 'border-color 0.3s, transform 0.3s, background 0.3s',
+              transition: revealTransition,
+              transitionDelay: staggerDelay(gridVisible, i),
               cursor: 'pointer',
               position: 'relative',
             }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'var(--gold)'
-              e.currentTarget.style.transform = 'translateY(-4px)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'var(--border-card)'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
+            onMouseEnter={cardHoverIn}
+            onMouseLeave={cardHoverOut}
           >
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{service.icon}</div>
             <h3 style={{

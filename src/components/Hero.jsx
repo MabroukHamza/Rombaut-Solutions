@@ -76,10 +76,10 @@ function Hero() {
       overflow: 'hidden',
     }}>
 
-      <div style={glowBg} />
-      <div style={goldLine} />
+      <div className="hero-glow" style={glowBg} />
+      <div className="hero-fade-up" style={{ ...goldLine, animationDelay: '0.05s' }} />
 
-      <span style={{
+      <span className="hero-fade-up" style={{
         fontFamily: 'Georgia, Times New Roman, serif',
         fontSize: '6rem',
         fontWeight: '700',
@@ -88,11 +88,12 @@ function Hero() {
         letterSpacing: '-0.05em',
         display: 'block',
         marginBottom: '1rem',
+        animationDelay: '0.12s',
       }}>
         RO
       </span>
 
-      <h1 style={{
+      <h1 className="hero-fade-up" style={{
         fontFamily: 'Georgia, Times New Roman, serif',
         fontSize: '1.5rem',
         fontWeight: '700',
@@ -100,59 +101,63 @@ function Hero() {
         color: '#d4a017',
         textTransform: 'uppercase',
         marginBottom: '0.25rem',
+        animationDelay: '0.2s',
       }}>
         Rombaut Solutions
       </h1>
 
-      <p style={{
+      <p className="hero-fade-up" style={{
         fontSize: '0.7rem',
         letterSpacing: '0.4em',
         color: '#8a6d00',
         textTransform: 'uppercase',
         marginBottom: '1.5rem',
+        animationDelay: '0.28s',
       }}>
         {t.tagline}
       </p>
 
-      <p style={{
+      <p className="hero-fade-up" style={{
         fontSize: '0.9rem',
         color: '#a08020',
         marginBottom: '0.5rem',
         lineHeight: '1.6',
+        animationDelay: '0.36s',
       }}>
         {t.sub1}
       </p>
 
-      <p style={{
+      <p className="hero-fade-up" style={{
         fontSize: '0.8rem',
         letterSpacing: '0.1em',
         color: '#8a6d00',
         textTransform: 'uppercase',
         marginBottom: '2.5rem',
+        animationDelay: '0.44s',
       }}>
         {t.sub2}
       </p>
 
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2.5rem' }}>
+      <div className="hero-fade-up" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2.5rem', animationDelay: '0.52s' }}>
         <a
           href="#services"
           style={btnOutline}
-          onMouseEnter={e => { e.currentTarget.style.background = '#d4a017'; e.currentTarget.style.color = '#000'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#d4a017'; }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#d4a017'; e.currentTarget.style.color = '#000'; e.currentTarget.style.boxShadow = '0 8px 24px -8px rgba(212,160,23,0.5)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#d4a017'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)' }}
         >
           {t.services}
         </a>
         <a
           href="#contact"
           style={btnFilled}
-          onMouseEnter={e => { e.currentTarget.style.background = '#f5d060'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = '#d4a017'; }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#f5d060'; e.currentTarget.style.boxShadow = '0 8px 24px -8px rgba(212,160,23,0.5)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+          onMouseLeave={e => { e.currentTarget.style.background = '#d4a017'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)' }}
         >
           {t.contact}
         </a>
       </div>
 
-      <div style={goldLine} />
+      <div className="hero-fade-up" style={{ ...goldLine, animationDelay: '0.6s' }} />
 
     </section>
   )

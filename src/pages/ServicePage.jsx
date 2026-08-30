@@ -1,5 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
+import { useReveal } from '../hooks/useReveal'
+import { revealTransition, staggerDelay, cardHoverIn, cardHoverOut } from '../styles/reveal'
 
 const labels = {
   nl: {
@@ -26,6 +28,7 @@ function ServicePage({ icon, title, description, details }) {
   const navigate = useNavigate()
   const { lang } = useLang()
   const l = labels[lang]
+  const [gridRef, gridVisible] = useReveal()
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', padding: '4rem 1.5rem', transition: 'background 0.3s' }}>
@@ -52,12 +55,13 @@ function ServicePage({ icon, title, description, details }) {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gap: '1.5rem', marginBottom: '4rem' }}>
-          {details.map((item) => (
+        <div ref={gridRef} style={{ display: 'grid', gap: '1.5rem', marginBottom: '4rem' }}>
+          {details.map((item, i) => (
             <div key={item.title}
-              style={{ border: '1px solid var(--border-card)', padding: '2rem', background: 'var(--bg-card)', transition: 'border-color 0.3s, background 0.3s' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-card)' }}
+              className={`reveal ${gridVisible ? 'is-visible' : ''}`}
+              style={{ border: '1px solid var(--border-card)', padding: '2rem', background: 'var(--bg-card)', transition: revealTransition, transitionDelay: staggerDelay(gridVisible, i) }}
+              onMouseEnter={cardHoverIn}
+              onMouseLeave={cardHoverOut}
             >
               <h3 style={{ fontFamily: 'Georgia, Times New Roman, serif', fontSize: '1rem', fontWeight: '700', color: 'var(--gold)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
                 {item.title}
