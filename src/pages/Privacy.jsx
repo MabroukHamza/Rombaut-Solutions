@@ -9,7 +9,7 @@ const content = {
     sections: [
       {
         h: 'Wie wij zijn',
-        p: '[Bedrijfsnaam], gevestigd te [Volledig adres], BTW/KBO-nummer [BTW/KBO-nummer], is verantwoordelijk voor de verwerking van uw persoonsgegevens zoals beschreven in dit privacybeleid. Contact: info@rombautsolutions.be.',
+        p: 'RombautSolution, is verantwoordelijk voor de verwerking van uw persoonsgegevens zoals beschreven in dit privacybeleid. Contact: info@rombautsolutions.be.',
       },
       {
         h: 'Welke gegevens we verzamelen',
@@ -44,7 +44,7 @@ const content = {
     sections: [
       {
         h: 'Who we are',
-        p: '[Company legal name], located at [Full registered address], VAT/company registration number [VAT/KBO number], is responsible for processing your personal data as described in this privacy policy. Contact: info@rombautsolutions.be.',
+        p: 'RombautSolutions, located at [Full registered address], VAT/company registration number [VAT/KBO number], is responsible for processing your personal data as described in this privacy policy. Contact: info@rombautsolutions.be.',
       },
       {
         h: 'What data we collect',
